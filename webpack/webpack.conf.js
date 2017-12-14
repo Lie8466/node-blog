@@ -9,7 +9,7 @@ const PATHS = {
     NODE_MODULES: path.resolve(PATH_ROOT, 'node_modules')
 };
 
-const ENV = process.env.ENV = process.env.NODE_ENV || 'dev';
+const ENV = process.env.NODE_ENV || 'dev';
 
 
 module.exports = {
