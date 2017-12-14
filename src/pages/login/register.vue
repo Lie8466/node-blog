@@ -16,7 +16,7 @@
             <div class="form-group">
                 <label class="col-sm-5 control-label">确认密码</label>
                 <div class="col-sm-2">
-                    <input type="password" class="form-control" v-model="passwordConfirm" placeholder="请输入密码">
+                    <input type="password" class="form-control" v-model="passwordConfirm" placeholder="确认密码">
                 </div>
             </div>
             <div class="form-group">
@@ -57,7 +57,10 @@
         methods: {
             submit () {
                 api.register().then(json => {
-                    console.log(JSON.stringify(json));
+                    this.$message({
+                        message: json.message,
+                        type: 'success'
+                    });
                 }).catch(e => {
                     this.$message({
                         message: e.message || '接口错误',
