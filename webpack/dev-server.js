@@ -9,11 +9,18 @@ const app = express();
 const config = require('./webpack.conf.js');
 const compiler = webpack(config);
 
-// Tell express to use the webpack-dev-middleware and use the webpack.config.js
-// configuration file as a base.
+
 app.use(webpackDevMiddleware(compiler, {
     publicPath: config.output.publicPath
 }));
+
+app.post('/register', function (req, res) {
+    res.send({
+        message: '注册成功',
+        status: 0,
+        data: {}
+    });
+});
 
 module.exports = app.listen(3303, function (err) {
     if (err) {

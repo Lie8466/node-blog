@@ -9,6 +9,8 @@ const PATHS = {
     NODE_MODULES: path.resolve(PATH_ROOT, 'node_modules')
 };
 
+const ENV = process.env.ENV = process.env.NODE_ENV || 'dev';
+
 
 module.exports = {
     entry: {
@@ -72,6 +74,9 @@ module.exports = {
             }]
     },
     plugins: [
+        new webpack.DefinePlugin({
+            '__ENV__': JSON.stringify(ENV)
+        }),
         // // 清理build文件夹
         // new CleanWebpackPlugin(['../build/*.*']),
         // 热更新

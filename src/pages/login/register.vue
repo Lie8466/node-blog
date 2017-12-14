@@ -14,18 +14,19 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-offset-5 col-sm-2">
-                    <button type="submit" class="btn btn-block btn-primary">登录</button>
+                <label class="col-sm-5 control-label">确认密码</label>
+                <div class="col-sm-2">
+                    <input type="password" class="form-control" v-model="passwordConfirm" placeholder="请输入密码">
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-5 col-sm-2">
-                    <div class="user-login">没有账号?
-                        <router-link target="_blank"
-                                     :to="{name: 'register'}"
-                                     class="table-control">点此注册
-                        </router-link>
-                    </div>
+                    <input type="checkbox"> 同意用户协议
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-5 col-sm-2">
+                    <button type="submit" class="btn btn-block btn-primary">注册</button>
                 </div>
             </div>
         </form>
@@ -43,17 +44,26 @@
 
 </style>
 <script lang="javascript">
+    import api from './api';
 
     export default{
         data () {
             return {
                 username: '',
-                password: ''
+                password: '',
+                passwordConfirm: ''
             };
         },
         methods: {
             submit () {
-                console.log('submit');
+                api.register().then(json => {
+                    console.log(JSON.stringify(json));
+                }).catch(e => {
+                    this.$message({
+                        message: e.message || '接口错误',
+                        type: 'error'
+                    });
+                });
             }
         }
     };

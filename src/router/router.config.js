@@ -3,6 +3,7 @@
  */
 
 import login from '../pages/login/login';
+import register from '../pages/login/register';
 
 const routerMap = [
     {
@@ -15,6 +16,14 @@ const routerMap = [
         component: login,
         meta: {
             title: '注册登录'
+        }
+    },
+    {
+        path: '/register',
+        name: 'register',
+        component: register,
+        meta: {
+            title: '用户注册'
         }
     }
 ];
