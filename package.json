@@ -8,10 +8,10 @@
     },
     "dependencies": {
         "axios": "^0.17.1",
-        "element-ui": "^2.0.8",
         "express": "^4.16.2",
         "file-loader": "^1.1.5",
         "lodash": "^4.17.4",
+        "mint-ui": "^2.2.13",
         "path": "^0.12.7",
         "url-loader": "^0.6.2",
         "vue": "^2.5.9",

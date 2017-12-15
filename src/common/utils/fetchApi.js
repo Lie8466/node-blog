@@ -17,7 +17,7 @@ export default (setting = {}) => {
         option.data = qs.stringify(option.data);
     }
     return axios(option).then((res) => {
-        if (res.data.status === 0) {
+        if (res.status === 0) {
             return res.data;
         }
         throw res.data;

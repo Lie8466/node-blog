@@ -2,28 +2,28 @@
  * Created by li on 10/12/2017.
  */
 
-import login from '../pages/login/login';
-import register from '../pages/login/register';
+import list from '../pages/product/list';
+import detail from '../pages/product/detail';
 
 const routerMap = [
     {
         path: '/',
-        redirect: {name: 'login'}
+        redirect: {name: 'list'}
     },
     {
-        path: '/login',
-        name: 'login',
-        component: login,
+        path: '/list',
+        name: 'list',
+        component: list,
         meta: {
-            title: '注册登录'
+            title: '产品列表'
         }
     },
     {
-        path: '/register',
-        name: 'register',
-        component: register,
+        path: '/register/:id',
+        name: 'detail',
+        component: detail,
         meta: {
-            title: '用户注册'
+            title: '产品详情'
         }
     }
 ];

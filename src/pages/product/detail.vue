@@ -49,14 +49,16 @@
     export default{
         data () {
             return {
-                username: '',
-                password: '',
-                passwordConfirm: ''
+                id: '',
+                detail: {}
             };
         },
+        created () {
+            this.getDetail()
+        },
         methods: {
-            submit () {
-                api.register().then(json => {
+            getDetail () {
+                api.detail().then(json => {
                     this.$message({
                         message: json.message,
                         type: 'success'

@@ -1,9 +1,10 @@
 const apiHostMap = {
     dev: {
-        host: '//localhost:3303'
+        // host: 'https://ugc.dujia.qunar.com'
+        host: '//l-dapp1.m.vc.cn6.qunar.com'
     },
     prod: {
-        host: '//localhost:3303'
+        host: 'https://ugc.dujia.qunar.com'
     }
 };
 const env = __ENV__;
