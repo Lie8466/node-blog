@@ -5,12 +5,14 @@ import Vue from 'vue';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import '@common/styles/common.scss';
+import VeeValidate from 'vee-validate';
 
 import App from './pages/app';
 import router from './router/router';
 import store from './store/';
 
 Vue.use(ElementUI);
+Vue.use(VeeValidate);
 
 window.root = new Vue({
     el: '#app',

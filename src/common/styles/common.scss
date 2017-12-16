@@ -17,3 +17,18 @@ $formBorder: #ccc;
 a {
     cursor: pointer;
 }
+
+.is-danger {
+    color: $dangerColor;
+}
+
+.control-label.required{
+    &:before {
+        content: '* ';
+        color: $red;
+        font-size: 30px;
+        font-weight: bold;
+        line-height: 0;
+        vertical-align: middle;
+    }
+}
