@@ -4,13 +4,13 @@
             <div class="form-group">
                 <label class="col-sm-5 control-label">用户名</label>
                 <div class="col-sm-2">
-                    <input type="email" class="form-control" v-model="username" placeholder="请输入用户名">
+                    <input type="text" class="form-control" name="username" v-model="username" placeholder="请输入用户名">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-5 control-label">密码</label>
                 <div class="col-sm-2">
-                    <input type="password" class="form-control" v-model="password" placeholder="请输入密码">
+                    <input type="password" name="password" class="form-control" v-model="password" placeholder="请输入密码">
                 </div>
             </div>
             <div class="form-group">
@@ -43,6 +43,7 @@
 
 </style>
 <script lang="javascript">
+    import api from './api';
 
     export default{
         data () {
@@ -53,7 +54,30 @@
         },
         methods: {
             submit () {
-                console.log('submit');
+                if (!this.username || !this.password) {
+                    this.$message({
+                        message: '请输入用户名和密码',
+                        type: 'error'
+                    });
+                    return;
+                }
+                const params = {
+                    username: this.username,
+                    password: this.password
+                };
+
+                api.login(params).then(json => {
+                    this.$message({
+                        message: '登录成功',
+                        type: 'success'
+                    });
+                    console.log(json.data);
+                }).catch(e => {
+                    this.$message({
+                        message: e.message || '接口错误',
+                        type: 'error'
+                    });
+                });
             }
         }
     };

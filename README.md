@@ -1,6 +1,6 @@
 # node-blog
 
-本工程基于node+express+element-ui，搭建了一个博客
+本工程基于node+express+mysql+element-ui，搭建了一个博客，可注册登录
 
 # 使用方法
 
