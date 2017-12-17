@@ -71,7 +71,13 @@
                     });
                     return;
                 }
-                api.register().then(json => {
+                const params = {
+                    username: this.username,
+                    password: this.password,
+                    date: this.formatDate(new Date())
+                };
+
+                api.register(params).then(json => {
                     this.$message({
                         message: json.message,
                         type: 'success'
@@ -82,6 +88,12 @@
                         type: 'error'
                     });
                 });
+            },
+            formatDate (date) {
+                const year = date.getFullYear();
+                const month = date.getMonth() + 1;
+                const day = date.getDate();
+                return `${year}-${month}-${day}`;
             }
         }
     };
