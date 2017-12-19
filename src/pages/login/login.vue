@@ -44,6 +44,7 @@
 </style>
 <script lang="javascript">
     import api from './api';
+    import store from 'src/store';
 
     export default{
         data () {
@@ -72,6 +73,8 @@
                         type: 'success'
                     });
                     console.log(json.data);
+                    store.commit('SET_USER_INFO', json.data);
+                    this.$router.push({name: 'blogList'});
                 }).catch(e => {
                     this.$message({
                         message: e.message || '接口错误',

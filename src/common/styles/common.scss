@@ -1,6 +1,8 @@
 $infoBg: #ecf5ff;
 $infoBorder: #c5d8f1;
 
+$themeColor: #337ab7;
+
 $orange: #ff9d3c;
 $fontOrange: #FF8D13;
 
@@ -31,4 +33,8 @@ a {
         line-height: 0;
         vertical-align: middle;
     }
+}
+
+.page-content {
+    padding: 70px 10px;
 }

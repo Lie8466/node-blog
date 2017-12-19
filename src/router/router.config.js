@@ -4,6 +4,7 @@
 
 import login from '../pages/login/login';
 import register from '../pages/login/register';
+import blogList from '../pages/person/blog-list';
 
 const routerMap = [
     {
@@ -15,7 +16,8 @@ const routerMap = [
         name: 'login',
         component: login,
         meta: {
-            title: '注册登录'
+            title: '注册登录',
+            noAuth: true
         }
     },
     {
@@ -23,7 +25,17 @@ const routerMap = [
         name: 'register',
         component: register,
         meta: {
-            title: '用户注册'
+            title: '用户注册',
+            noAuth: true
+        }
+    },
+    {
+        path: '/blog-list',
+        name: 'blogList',
+        component: blogList,
+        meta: {
+            title: '博客列表',
+            noAuth: false
         }
     }
 ];

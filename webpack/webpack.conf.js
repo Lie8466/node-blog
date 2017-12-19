@@ -27,6 +27,7 @@ module.exports = {
             'vue$': 'vue/dist/vue',
             'src': path.resolve(__dirname, '../src'),
             '@common': path.resolve(__dirname, '../src/common'),
+            '@store': path.resolve(__dirname, '../src/store')
         }
     },
     devtool: 'inline-source-map',

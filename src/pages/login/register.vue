@@ -82,6 +82,7 @@
                         message: json.message,
                         type: 'success'
                     });
+                    this.$router.push({name: 'blogList'});
                 }).catch(e => {
                     this.$message({
                         message: e.message || '接口错误',
