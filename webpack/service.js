@@ -19,44 +19,49 @@ function initApp (app) {
         where user_name="${body.username}" and user_password="${body.password}"`;
         connetDB(queryName)
             .then(result => {
-                console.info(result);
-                if (result.length) {
-                    res.send({
+                if (!result.length) {
+                    return false;
+                } else {
+                    return {
                         message: '该用户名已存在，请更换用户名',
                         status: 1,
                         data: {}
-                    });
+                    };
+                }
+            })
+            .then(data => {
+                if (data) {
+                    return data;
                 } else {
                     connetDB(queryInsert)
-                        .then(result => {
-                            console.log(result);
-                            connetDB(queryId)
-                                .then(result => {
-                                    res.cookie('userId', result[0].userId, { expires: new Date(Date.now() + 900000) });
-                                    res.cookie('userName', result[0].userName, { expires: new Date(Date.now() + 900000) });
-                                    res.cookie('createDate', result[0].createDate, { expires: new Date(Date.now() + 900000) });
-                                    res.send({
-                                        message: '注册成功',
-                                        status: 0,
-                                        data: result[0]
-                                    });
-                                })
-                                .catch(error => {
-                                    res.send({
-                                        message: error || '注册失败',
-                                        status: 1,
-                                        data: {}
-                                    });
-                                });
+                        .then(() => {
+                            return false;
                         })
                         .catch(error => {
-                            console.error(error);
-                            res.send({
+                            return {
                                 message: error || '注册失败',
                                 status: 1,
                                 data: {}
-                            });
+                            };
                         });
+                }
+            })
+            .then(json => {
+                debugger;
+                if (json) {
+                    res.send(json);
+                } else {
+                    connetDB(queryId)
+                        .then(result => {
+                            res.cookie('userId', result[0].userId, { expires: new Date(Date.now() + 900000) });
+                            res.cookie('userName', result[0].userName, { expires: new Date(Date.now() + 900000) });
+                            res.cookie('createDate', result[0].createDate, { expires: new Date(Date.now() + 900000) });
+                            res.send({
+                                message: '注册成功',
+                                status: 0,
+                                data: result[0]
+                            });
+                        })
                 }
             })
             .catch(error => {

@@ -79,7 +79,7 @@
 
                 api.register(params).then(json => {
                     this.$message({
-                        message: json.message,
+                        message: json.message || '注册成功',
                         type: 'success'
                     });
                     this.$router.push({name: 'blogList'});
