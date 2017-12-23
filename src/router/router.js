@@ -18,7 +18,6 @@ function getCookie (key) {
     let value = '';
     cookie.forEach(item => {
         if (item.split('=')[0].trim() === key) {
-            console.log(item.split('=')[1]);
             value = item.split('=')[1];
         }
     })

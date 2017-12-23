@@ -52,6 +52,7 @@
 <script lang="javascript">
     import api from './api';
     import { Validator } from 'vee-validate';
+    import utils from '@common/utils/utils';
 
     export default{
         data () {
@@ -74,7 +75,7 @@
                 const params = {
                     username: this.username,
                     password: this.password,
-                    date: this.formatDate(new Date())
+                    date: utils.formatDate(new Date())
                 };
 
                 api.register(params).then(json => {
@@ -89,12 +90,6 @@
                         type: 'error'
                     });
                 });
-            },
-            formatDate (date) {
-                const year = date.getFullYear();
-                const month = date.getMonth() + 1;
-                const day = date.getDate();
-                return `${year}-${month}-${day}`;
             }
         }
     };

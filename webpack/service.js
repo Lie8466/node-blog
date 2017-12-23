@@ -3,6 +3,7 @@
  */
 const mysql = require('mysql');
 const config  = require('../config');
+const oneDayLong = 24 * 60 * 60 * 1000;
 
 function initApp (app) {
     app.post('/register', function (req, res) {
@@ -12,11 +13,10 @@ function initApp (app) {
         步骤3.获取用户ID
          */
         const body = req.body;
-        const queryName = `select * from  user_info where user_name="${body.username}"`;
-        const queryInsert = `insert into user_info (user_name, user_password, create_date) values \
+        const queryName = `select * from  user_info where userName="${body.username}"`;
+        const queryInsert = `insert into user_info (userName, userPassword, createDate) values \
         ("${body.username}", "${body.password}", "${body.date}")`;
-        const queryId = `select user_id as userId, user_name as userName, create_date as createDate from user_info \ 
-        where user_name="${body.username}" and user_password="${body.password}"`;
+        const queryId = `select userId, userName, createDate from user_info where userName="${body.username}"`;
         connetDB(queryName)
             .then(result => {
                 if (!result.length) {
@@ -47,15 +47,14 @@ function initApp (app) {
                 }
             })
             .then(json => {
-                debugger;
                 if (json) {
                     res.send(json);
                 } else {
                     connetDB(queryId)
                         .then(result => {
-                            res.cookie('userId', result[0].userId, { expires: new Date(Date.now() + 900000) });
-                            res.cookie('userName', result[0].userName, { expires: new Date(Date.now() + 900000) });
-                            res.cookie('createDate', result[0].createDate, { expires: new Date(Date.now() + 900000) });
+                            res.cookie('userId', result[0].userId, { expires: new Date(Date.now() + oneDayLong) });
+                            res.cookie('userName', result[0].userName, { expires: new Date(Date.now() + oneDayLong) });
+                            res.cookie('createDate', result[0].createDate, { expires: new Date(Date.now() + oneDayLong) });
                             res.send({
                                 message: '注册成功',
                                 status: 0,
@@ -65,7 +64,6 @@ function initApp (app) {
                 }
             })
             .catch(error => {
-                console.error(error);
                 res.send({
                     message: error,
                     status: 1,
@@ -77,15 +75,14 @@ function initApp (app) {
     app.post('/login', function (req, res) {
         console.log(req.body);
         const body = req.body;
-        const query = `select user_id as userId, user_name as userName, create_date as createDate from user_info \ 
-        where user_name="${body.username}" and user_password="${body.password}"`;
+        const query = `select userId, userName, createDate from user_info where userName="${body.username}"`;
         connetDB(query)
             .then(result => {
                 console.info(result);
                 if (result.length) {
-                    res.cookie('userId', result[0].userId, { expires: new Date(Date.now() + 900000) });
-                    res.cookie('userName', result[0].userName, { expires: new Date(Date.now() + 900000) });
-                    res.cookie('createDate', result[0].createDate, { expires: new Date(Date.now() + 900000) });
+                    res.cookie('userId', result[0].userId, { expires: new Date(Date.now() + oneDayLong) });
+                    res.cookie('userName', result[0].userName, { expires: new Date(Date.now() + oneDayLong) });
+                    res.cookie('createDate', result[0].createDate, { expires: new Date(Date.now() + oneDayLong) });
                     res.send({
                         message: '登录成功',
                         status: 0,
@@ -118,6 +115,48 @@ function initApp (app) {
             status: 0,
             data: {}
         });
+    });
+
+    app.get('/blogList', function (req, res) {
+        const query = `select * from blog_list where userId="${req.query.userId}"`;
+        connetDB(query)
+            .then(result => {
+                res.send({
+                    message: '成功',
+                    status: 0,
+                    data: result
+                });
+            })
+            .catch(error => {
+                console.error(error);
+                res.send({
+                    message: error,
+                    status: 1,
+                    data: {}
+                });
+            });
+    });
+
+    app.post('/addBlog', function (req, res) {
+        const body = req.body;
+        const query = `insert into blog_list (blogTitle, blogContent, createDate, userId) values \
+        ("${body.blogTitle}", "${body.blogContent}", "${body.createDate}", "${body.userId}")`;
+        connetDB(query)
+            .then(() => {
+                res.send({
+                    message: '新增成功',
+                    status: 0,
+                    data: {}
+                });
+            })
+            .catch(error => {
+                console.error(error);
+                res.send({
+                    message: error,
+                    status: 1,
+                    data: {}
+                });
+            });
     });
 }
 

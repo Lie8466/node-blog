@@ -72,7 +72,6 @@
                         message: '登录成功',
                         type: 'success'
                     });
-                    console.log(json.data);
                     store.commit('SET_USER_INFO', json.data);
                     this.$router.push({name: 'blogList'});
                 }).catch(e => {

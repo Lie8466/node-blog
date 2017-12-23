@@ -4,7 +4,7 @@
         <div class="nav-content">
                 <span class="nav-control">
                     <span class="nav-item">hello <span v-if="userInfo">{{userInfo.userName}}</span></span>
-                    <span class="nav-item"><a @click="logout" class="btn btn-xs btn-primary">退出</a></span>
+                    <span class="nav-item"><a @click="logout" class="btn btn-md btn-primary">退出</a></span>
                 </span>
         </div>
     </div>

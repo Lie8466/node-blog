@@ -19,14 +19,30 @@
 #### datebase: node_blog
 #### table: user_info
 ```
-create table user_info (user_id INT AUTO_INCREMENT, user_name char(100) not null, user_password char(100) not null,create_date char(100), primary key(user_id));
+create table user_info (userId INT AUTO_INCREMENT, userName char(100) not null, userPassword char(100) not null,createDate char(100), primary key(userId));
 ```
-user_id: 用户id，关键字
+userId: 用户id，关键字
 
-user_name: 用户名
+userName: 用户名
 
-user_password: 密码
+userPassword: 密码
 
-create_date: 创建时间
+createDate: 创建时间
+
+#### table blog_List
+
+```
+create table blog_list (blogId INT AUTO_INCREMENT, blogTitle char(100) not null, blogContent text, createDate char(100), userId char(100), primary key(blogId));
+
+```
+blogId: blog Id
+
+blogTitle: 博客标题
+
+blogContent: 博客内容
+
+createDate: 博客创建时间
+
+userId: 用户Id
 
 

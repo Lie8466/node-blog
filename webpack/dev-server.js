@@ -25,7 +25,6 @@ service.initApp(app);
 
 module.exports = app.listen(3303, function (err) {
     if (err) {
-        console.log(err)
         return
     }
     var uri = 'http://localhost:3303';
