@@ -8,17 +8,11 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const app = express();
 const config = require('./webpack.conf.js');
 const compiler = webpack(config);
-const bodyParser = require('body-parser');
 
 
 app.use(webpackDevMiddleware(compiler, {
     publicPath: config.output.publicPath
 }));
-
-app.use(bodyParser.json()); // for parsing application/json
-app.use(bodyParser.urlencoded({
-    extended: true
-})); // for parsing application/x-www-form-urlencoded
 
 
 module.exports = app.listen(3303, function (err) {

@@ -20,7 +20,7 @@
 
 ```
 cd node-server
-node service.js
+node server.js
 ```
 端口号 3000
 
