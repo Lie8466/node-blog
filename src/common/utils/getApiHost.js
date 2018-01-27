@@ -1,9 +1,9 @@
 const apiHostMap = {
     dev: {
-        host: '//localhost:3303'
+        host: '//localhost:3000'
     },
     prod: {
-        host: '//localhost:3303'
+        host: '//localhost:3000'
     }
 };
 const env = __ENV__;

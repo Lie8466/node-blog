@@ -14,7 +14,17 @@
 
 5. 浏览器打开http://localhost:3303/
 
-# 数据库配置 config.js
+
+
+# 数据库配置  node-server
+
+```
+cd node-server
+node service.js
+```
+端口号 3000
+
+#### 配置文件 config.js
 
 #### datebase: node_blog
 #### table: user_info
