@@ -19,10 +19,9 @@
 # 数据库配置  node-server
 
 ```
-cd node-server
-node server.js
+npm run server
 ```
-端口号 3000
+http://localhost:3000
 
 #### 配置文件 config.js
 
